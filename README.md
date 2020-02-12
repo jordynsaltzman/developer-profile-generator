@@ -24,11 +24,11 @@ The PDF user profile contains the following:
 
 ## User Story
 
-`AS A product manager
+`AS A product manager`
 
-I WANT a developer profile generator
+`I WANT a developer profile generator`
 
-SO THAT I can easily prepare reports for stakeholders`
+`SO THAT I can easily prepare reports for stakeholders`
 
 ## License 
 
