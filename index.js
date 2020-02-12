@@ -2,9 +2,9 @@ const inquirer = require("inquirer");
 const fs = require("fs");
 const axios = require("axios");
 const generateHTML = require("./generatorHTML");
-var pdf = require('html-pdf');
-var readhtml = fs.readFileSync('./index.html', 'utf8');
-var options = { format: 'Letter' };
+const pdf = require('html-pdf');
+const readhtml = fs.readFileSync('./index.html', 'utf8');
+const options = { format: 'Letter' };
 
 let questions = [
     { input: "text", message: "What is your Github username?", name: "username" },
@@ -13,7 +13,7 @@ let questions = [
 
 let dataObj = {};
 
-let doit = function () {
+let generateProfile = function () {
     const results = inquirer.prompt(questions).then(function (input) {
         axios.get(`https://api.github.com/users/${input.username}`)
             .then(function (axiosResponse) {
@@ -46,13 +46,14 @@ let doit = function () {
                         }
                     });
                 });
-            });
+            }).then(function(){
+                pdf.create(readhtml, options).toFile( "./profile.pdf",function(err, res){
+                    if (err) return console.log(err);
+                    console.log(res.filename);
+                  });
+            })       
     });
 
-    pdf.create(readhtml, options).toFile( "./profile.pdf",function(err, res){
-        if (err) return console.log(err);
-        console.log(res.filename);
-      });
 };
 
-doit();
+generateProfile();
