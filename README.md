@@ -30,6 +30,11 @@ The PDF user profile contains the following:
 
 `SO THAT I can easily prepare reports for stakeholders`
 
+## Usage
+1. Run `npm install`from the terminal.
+2. Run `node index.js` from the terminal.
+3. Enter name and favorite color.
+
 ## License 
 
 MIT License
